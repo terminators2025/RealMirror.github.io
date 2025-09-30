@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -157,11 +157,6 @@
     color: white;                 /* 文字恢复白色 */
     box-shadow: none;             /* 可选：移除 Bulma 框架默认的蓝色焦点轮廓 */
     }
-
-    /* 
-    (可选，但推荐) 为 :active 状态添加样式
-    这将在用户按住鼠标左键的瞬间提供一个轻微的视觉反馈
-    */
     .realmirror-banner .button.is-white.is-outlined:active {
     background-color: rgba(255, 255, 255, 0.15); /* 点击瞬间背景有轻微变化 */
     transform: translateY(1px); /* 点击瞬间有轻微下沉效果 */
@@ -270,8 +265,69 @@
 
 <main id="main-content">
 
-<!-- Section 1: Your Original Header (Recreated with Bulma) -->
+
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealMirror Project</title>
+    
+    <!-- 为了让示例代码能直接运行，我引入了 Bulma 和 FontAwesome 的 CDN 链接 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <style>
+        /* --- 关键CSS改动 --- */
+
+        /* 1. 让头图区域(hero)成为定位的“容器” */
+        .realmirror-banner {
+            position: relative; /* 这是最关键的一步，为内部元素的绝对定位提供基准 */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 2. 为新的 logo 容器设置样式 */
+        .hero-logo {
+            position: absolute; /* 让 logo 脱离文档流，可以自由移动 */
+            top: 0.8rem;          /* 距离父容器（头图）顶部 2rem */
+            left: 2.5rem;       /* 距离父容器（头图）左侧 2.5rem */
+            z-index: 10;        /* 确保 logo 显示在其他元素之上 */
+        }
+
+        /* 3. 调整 logo 图片大小，使其在角落看起来更和谐 */
+        .hero-logo img {
+            width: 220px;       /* 建议尺寸，原 180px 可能在角落过大 */
+            height: auto;       /* 保持图片原始宽高比 */
+        }
+        
+        /* --- 您原有的其他样式（保持不变） --- */
+        .publication-links .link-block {
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+        .home-slider--anchor {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .anchor-icon {
+            width: 40px;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Section 1: 修改后的头图区域 -->
 <section class="hero is-fullheight realmirror-banner" style="background-image: url('assets/img/toutu.gif')">
+  
+  <!-- 这是新的 logo 位置 -->
+  <div class="hero-logo">
+    <a href="index.html"><img src="assets/img/zte_logo.png" alt="Logo"/></a>
+  </div>
+
   <div class="hero-body">
     <div class="container has-text-centered">
       <h2 class="subtitle is-4" style="font-size: 1.9rem; white-space: nowrap;">A Comprehensive, Open-Source Vision-Language-Action Platform for Embodied AI</h2>
@@ -289,7 +345,6 @@
             <span>arXiv</span>
           </a>
         </span>
-        <!-- 这是修改后的代码 -->
         <span class="link-block">
         <a href="#" class="button is-white is-outlined is-rounded is-medium">
             <span class="icon"><i class="fas fa-dice-d20"></i></span>
@@ -297,7 +352,7 @@
         </a>
         </span>
         <span class="link-block">
-          <a href="https://github.com/terminators2025/RealMirror" class="button is-white is-outlined is-rounded is-medium">
+          <a href="https://github.com/terminators2025" class="button is-white is-outlined is-rounded is-medium">
             <span class="icon"><i class="fab fa-github"></i></span>
             <span>Code</span>
           </a>
@@ -311,6 +366,8 @@
     </div>
   </div>
 </section>
+
+</body>
 
 <!-- Section 2: Your "Four Elements" Section (White background) -->
 <section class="section">
