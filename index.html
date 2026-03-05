@@ -59,6 +59,8 @@
     }
     .publication-links {
       margin-top: 1.5rem;
+      position: relative;
+      z-index: 20; /* 确保按钮层级高于底部装饰物 */
     }
     .publication-links .link-block {
       margin: 0.5rem;
@@ -71,14 +73,18 @@
       justify-content: space-between;
       align-items: center;
     }
+    
     /* Custom style for your banner */
     .realmirror-banner {
+      position: relative; /* 为内部元素的绝对定位提供基准 */
       background-size: cover;
       background-position: center center;
       color: white;
     }
     .realmirror-banner .hero-body {
       background-color: rgba(0, 0, 0, 0.55); /* Dark overlay for text readability */
+      /* 【修复遮挡问题】: 增加底部 padding，强制为绝对定位的 anchor 留出空间 */
+      padding-bottom: 150px !important; 
     }
     .realmirror-banner .title {
       color: white;
@@ -106,69 +112,61 @@
     .section-title {
         margin-bottom: 3rem;
     }
-    /*
-    * (修改后) 让视频容器超过其父容器宽度并保持居中
-    */
+    
+    /* 让视频容器超过其父容器宽度并保持居中 */
     .publication-video {
-        /* 1. 设置您希望的宽度，可以超过100% */
         width: 120%; 
-        max-width: 120%; /* 确保最大宽度与宽度一致 */
-
-        /* 2. 使用 transform 技巧进行精确居中 */
+        max-width: 120%; 
         position: relative;
         left: 50%;
         transform: translateX(-50%);
     }
-
-    /* 确保 video 标签本身填满其新的、更大的容器 */
     .publication-video video {
         width: 100%;
-        height: auto; /* 保持视频的原始宽高比 */
-        display: block; /* 移除 video 标签可能存在的底部额外空间 */
+        height: auto; 
+        display: block; 
     }
     .result-image-container {
         padding: 1rem;
     }
-    /* MODIFIED: CSS for centering oversized images */
+    
+    /* CSS for centering oversized images */
     .result-image {
         display: block;
         position: relative;
         left: 50%;
-        
         border-radius: 8px;
         border: 1px solid #e0e0e0;
         box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         width: 150%;
         max-width: 150%;
-        
-        /* The transform property now handles centering */
         transform: translateX(-50%);
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     }
-
-    /* MODIFIED: Hover effect combines centering and animation */
     .result-image:hover {
-        /* We must include translateX(-50%) to keep it centered during the hover animation */
         transform: translateX(-50%) translateY(-10px) scale(1.02);
         box-shadow: 0 12px 24px rgba(0,0,0,0.2);
     }
+    
     .realmirror-banner .button.is-white.is-outlined:focus {
-    background-color: transparent; /* 背景恢复透明 */
-    color: white;                 /* 文字恢复白色 */
-    box-shadow: none;             /* 可选：移除 Bulma 框架默认的蓝色焦点轮廓 */
+        background-color: transparent; 
+        color: white;                 
+        box-shadow: none;             
     }
     .realmirror-banner .button.is-white.is-outlined:active {
-    background-color: rgba(255, 255, 255, 0.15); /* 点击瞬间背景有轻微变化 */
-    transform: translateY(1px); /* 点击瞬间有轻微下沉效果 */
+        background-color: rgba(255, 255, 255, 0.15); 
+        transform: translateY(1px); 
     }
+    
     .dot-dash {
-    position: relative;
-    text-align: center;
-    font-size: 55px;
-    line-height: 0;
-    color: #3c88e7;
-    margin: 20px 0 40px;
-    display: block; }
+        position: relative;
+        text-align: center;
+        font-size: 55px;
+        line-height: 0;
+        color: #3c88e7;
+        margin: 20px 0 40px;
+        display: block; 
+    }
     .dot-dash:before, .dot-dash:after {
         content: "";
         width: 80px;
@@ -177,42 +175,37 @@
         position: relative;
         display: inline-block;
         top: -2px;
-        margin-right: 10px; }
+        margin-right: 10px; 
+    }
     .dot-dash:after {
         margin-right: 0px;
-        margin-left: 10px; }
+        margin-left: 10px; 
+    }
     .dot-dash.dark:before, .dot-dash.dark:after {
-        background: #6a6a6a; }
+        background: #6a6a6a; 
+    }
     .rounded-video {
         border-radius: 25px;
-        }
+    }
+    
+    /* Anchor 样式 */
     .home-slider--anchor {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 125px;
-    text-align: center;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: end;
-    -webkit-align-items: flex-end;
-    -ms-flex-align: end;
-    align-items: flex-end; }
-    .home-slider--anchor span {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
+        position: absolute;
+        bottom: 1rem; /* 保持在底部 */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 125px;
+        text-align: center;
         display: flex;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
+        align-items: flex-end; 
+        justify-content: center;
+        z-index: 10; /* 确保层级低于按钮，如果发生重叠按钮依然可点 */
+        pointer-events: none; /* 让装饰性背景不阻挡点击 */
+    }
+    .home-slider--anchor span {
+        display: flex;
         align-items: center;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
         justify-content: center;
         color: #3c88e7;
         background: #f4f5f9;
@@ -223,7 +216,9 @@
         cursor: pointer;
         position: relative;
         z-index: 1;
-        font-size: 22px; }
+        font-size: 22px; 
+        pointer-events: auto; /* 恢复图标本身的点击事件 */
+    }
     .home-slider--anchor:before {
         content: "";
         position: absolute;
@@ -232,9 +227,9 @@
         width: 50%;
         height: 500px;
         background: #fff;
-        -webkit-transform: skew(0deg, 8deg);
         transform: skew(0deg, 8deg);
-        z-index: 0; }
+        z-index: 0; 
+    }
     .home-slider--anchor:after {
         content: "";
         position: absolute;
@@ -243,11 +238,11 @@
         width: 50%;
         height: 500px;
         background: #fff;
-        -webkit-transform: skew(0deg, -8deg);
         transform: skew(0deg, -8deg);
-        z-index: 0; }
+        z-index: 0; 
+    }
 
-    /* START: 新增的图片悬浮效果CSS */
+    /* 图片悬浮效果CSS */
     .interactive-image {
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -257,7 +252,54 @@
         transform: translateY(-10px) scale(1.02);
         box-shadow: 0 12px 24px rgba(0,0,0,0.2);
     }
-    /* END: 新增的图片悬浮效果CSS */
+    
+    /* Logo 样式 */
+    .hero-logo {
+        position: absolute; 
+        top: 0.8rem;          
+        left: 2.5rem;       
+        z-index: 10;        
+    }
+    .hero-logo img {
+        width: 220px;       
+        height: auto;       
+    }
+    
+    .publication-links .link-block {
+        display: inline-block;
+        margin: 0 0.5rem;
+    }
+    .anchor-icon {
+        width: 40px;
+        height: auto;
+    }
+    .acceptance-badge {
+        display: inline-block;
+        color: #ffd700; 
+        padding: 0.6rem 2rem;
+        border-radius: 50px;
+        border: 1.5px solid rgba(255, 215, 0, 0.6); 
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        backdrop-filter: blur(8px); 
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    }
+
+    /* 响应式调整，防止小屏幕下文字过大导致高度溢出 */
+    @media (max-width: 768px) {
+        .realmirror-banner .title {
+            font-size: 3.5rem !important;
+        }
+        .realmirror-banner .subtitle {
+            font-size: 1.2rem !important;
+            white-space: normal !important;
+        }
+        .acceptance-badge {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+        }
+    }
   </style>
   
 </head>
@@ -265,73 +307,6 @@
 
 <main id="main-content">
 
-
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealMirror Project</title>
-    
-    <!-- 为了让示例代码能直接运行，我引入了 Bulma 和 FontAwesome 的 CDN 链接 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-
-    <style>
-        /* --- 关键CSS改动 --- */
-
-        /* 1. 让头图区域(hero)成为定位的“容器” */
-        .realmirror-banner {
-            position: relative; /* 这是最关键的一步，为内部元素的绝对定位提供基准 */
-            background-size: cover;
-            background-position: center;
-        }
-
-        /* 2. 为新的 logo 容器设置样式 */
-        .hero-logo {
-            position: absolute; /* 让 logo 脱离文档流，可以自由移动 */
-            top: 0.8rem;          /* 距离父容器（头图）顶部 2rem */
-            left: 2.5rem;       /* 距离父容器（头图）左侧 2.5rem */
-            z-index: 10;        /* 确保 logo 显示在其他元素之上 */
-        }
-
-        /* 3. 调整 logo 图片大小，使其在角落看起来更和谐 */
-        .hero-logo img {
-            width: 220px;       /* 建议尺寸，原 180px 可能在角落过大 */
-            height: auto;       /* 保持图片原始宽高比 */
-        }
-        
-        /* --- 您原有的其他样式（保持不变） --- */
-        .publication-links .link-block {
-            display: inline-block;
-            margin: 0 0.5rem;
-        }
-        .home-slider--anchor {
-            position: absolute;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .anchor-icon {
-            width: 40px;
-            height: auto;
-        }
-        .acceptance-badge {
-            display: inline-block;
-            color: #ffd700; /* 金色文字 */
-            padding: 0.6rem 2rem;
-            border-radius: 50px;
-            border: 1.5px solid rgba(255, 215, 0, 0.6); /* 半透明金边 */
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(8px); /* 毛玻璃效果，让背景 GIF 隐约透出 */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 简单的阴影让它浮现在背景之上 */
-        }
-    </style>
-</head>
-
-<body>
 <!-- Section 1: 修改后的头图区域 -->
 <section class="hero is-fullheight realmirror-banner" style="background-image: url('assets/img/toutu.gif')">
   
@@ -384,8 +359,6 @@
     </div>
   </div>
 </section>
-
-</body>
 
 <!-- Section 2: Your "Four Elements" Section (White background) -->
 <section class="section">
@@ -497,19 +470,16 @@
       <div class="columns is-centered">
         <div class="column is-one-third">
           <figure class="image">
-            <!-- MODIFIED: Added class and removed inline styles -->
             <img src="assets/img/1_1.gif" alt="Scenario asset 1" class="interactive-image">
           </figure>
         </div>
         <div class="column is-one-third">
           <figure class="image">
-            <!-- MODIFIED: Added class and removed inline styles -->
             <img src="assets/img/2_1.gif" alt="Scenario asset 2" class="interactive-image">
           </figure>
         </div>
         <div class="column is-one-third">
           <figure class="image">
-            <!-- MODIFIED: Added class and removed inline styles -->
             <img src="assets/img/3_1.gif" alt="Scenario asset 3" class="interactive-image">
           </figure>
         </div>
@@ -518,13 +488,11 @@
       <div class="columns is-centered">
         <div class="column is-one-third">
           <figure class="image">
-            <!-- MODIFIED: Added class and removed inline styles -->
             <img src="assets/img/4_1.gif" alt="Operational example 1" class="interactive-image">
           </figure>
         </div>
         <div class="column is-one-third">
           <figure class="image">
-            <!-- MODIFIED: Added class and removed inline styles -->
             <img src="assets/img/5_1.gif" alt="Operational example 2" class="interactive-image">
           </figure>
         </div>
@@ -540,17 +508,14 @@
       <div class="sim2real-gallery" style="display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
         <!-- Image 1 -->
         <div class="image-container">
-          <!-- MODIFIED: Added class and removed conflicting inline styles -->
           <img src="assets/img/shanghaizhan.gif" alt="Sim2Real example 1" class="interactive-image" style="height: 480px; width: auto;">
         </div>
         <!-- Image 2 -->
         <div class="image-container">
-          <!-- MODIFIED: Added class and removed conflicting inline styles -->
           <img src="assets/img/pull_ball_1.gif" alt="Sim2Real example 2" class="interactive-image" style="height: 480px; width: auto;">
         </div>
         <!-- Image 3 -->
         <div class="image-container">
-          <!-- MODIFIED: Added class and removed conflicting inline styles -->
           <img src="assets/img/pull_ball_2.gif" alt="Sim2Real example 3" class="interactive-image" style="height: 480px; width: auto;">
         </div>
       </div>
@@ -619,7 +584,7 @@
       <div class="column is-8">
         <div class="content has-text-centered">
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener noreferrer">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank" rel="noopener noreferrer">Nerfies</a> project page.
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener noreferrer">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank" rel="noopener noreferrer">Nerfies</a> project page.
             You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
